@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f6fa;
+  }
+  
+  .changelog {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  }
+  
+  .changelog h2 {
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+  }
+  
+  .version {
+    margin-bottom: 20px;
+  }
+  
+  .version h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .version span {
+    color: #777;
+    font-size: 13px;
+  }
+  
+  ul {
+    padding-left: 18px;
+  }
+  
+  li {
+    margin-bottom: 6px;
+  }
+  
+  .added::before {
+    content: "➕ ";
+    color: green;
+  }
+  
+  .fixed::before {
+    content: "🐛 ";
+    color: red;
+  }
+  
+  .changed::before {
+    content: "🔧 ";
+    color: orange;
+  }
+  
