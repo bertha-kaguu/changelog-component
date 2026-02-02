@@ -1,5 +1,4 @@
 const { useState } = React;
-const { useState, useRef, useEffect } = React;
 const { createRoot } = ReactDOM;
 
 // Changelog data
@@ -62,7 +61,6 @@ function Changelog() {
           React.createElement(
             "span",
             { className: "arrow" },
-            { className: "collapse-indicator" },
             isCollapsed ? "▶" : "▼"
           )
         ),
