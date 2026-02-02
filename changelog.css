@@ -20,6 +20,7 @@ body {
   
   .version {
     margin-bottom: 20px;
+    border: 1px solid #ddd;
   }
   
   .version h3 {
@@ -53,5 +54,21 @@ body {
   .changed::before {
     content: "🔧 ";
     color: orange;
+  }
+  .version .content {
+    padding: 0 10px;
+    overflow: hidden;
+    transition: height 0.3s ease;
+  }
+  
+  .version.collapsed .content {
+    height: 0 !important;
+  }
+
+  .version .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    cursor: pointer;
   }
   

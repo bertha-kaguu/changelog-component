@@ -1,4 +1,5 @@
 const { useState } = React;
+const { useState, useRef, useEffect } = React;
 const { createRoot } = ReactDOM;
 
 // Changelog data
@@ -24,25 +25,66 @@ const changelogData = [
 
 // React Changelog Component
 function Changelog() {
-  return (
-    React.createElement("div", { className: "changelog" },
-      React.createElement("h2", null, "📋 Changelog"),
-      changelogData.map(log =>
-        React.createElement("div", { key: log.version, className: "version" },
-          React.createElement("h3", null,
+  const [collapsedVersions, setCollapsedVersions] = useState({});
+
+  const toggleCollapse = (version) => {
+    setCollapsedVersions(prev => ({
+      ...prev,
+      [version]: !prev[version]
+    }));
+  };
+
+  return React.createElement(
+    "div",
+    { className: "changelog" },
+    React.createElement("h2", null, "📋 Changelog"),
+
+    changelogData.map(log => {
+      const isCollapsed = collapsedVersions[log.version] || false;
+
+      return React.createElement(
+        "div",
+        { key: log.version, className: "version" },
+
+        // HEADER (clickable)
+        React.createElement(
+          "div",
+          {
+            className: "header",
+            onClick: () => toggleCollapse(log.version)
+          },
+          React.createElement(
+            "h3",
+            null,
             `v${log.version} `,
             React.createElement("span", null, `– ${log.date}`)
           ),
-          React.createElement("ul", null,
+          React.createElement(
+            "span",
+            { className: "arrow" },
+            { className: "collapse-indicator" },
+            isCollapsed ? "▶" : "▼"
+          )
+        ),
+
+        // CONTENT (collapsible)
+        !isCollapsed &&
+          React.createElement(
+            "ul",
+            { className: "content" },
             log.changes.map((change, index) =>
-              React.createElement("li", { key: index, className: change.type }, change.text)
+              React.createElement(
+                "li",
+                { key: index, className: change.type },
+                change.text
+              )
             )
           )
-        )
-      )
-    )
+      );
+    })
   );
 }
+
 
 // Render to DOM
 const root = createRoot(document.getElementById("root"));
