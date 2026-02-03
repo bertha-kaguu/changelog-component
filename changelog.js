@@ -87,3 +87,15 @@ function Changelog() {
 // Render to DOM
 const root = createRoot(document.getElementById("root"));
 root.render(React.createElement(Changelog));
+// THEME TOGGLE
+const themeToggle = document.getElementById("themeToggle");
+
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+  document.body.classList.toggle("light");
+
+  themeToggle.textContent =
+    document.body.classList.contains("dark")
+      ? "☀️ Light Mode"
+      : "🌙 Dark Mode";
+});
